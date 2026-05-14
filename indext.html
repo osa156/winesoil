@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cellar & Soil — Nigeria</title>
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --ochre: #C4956A;
+    --terracotta: #B85C38;
+    --deep-green: #2D3E2F;
+    --soft-grey: #8A8A8A;
+    --light-border: rgba(26,26,26,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--ochre); color: white; }
+
+  /* HEADER */
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-border);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .logo-group { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 36px; height: 36px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+  }
+  .logo-text {
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -0.5px; text-transform: uppercase;
+  }
+  .logo-sub {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--soft-grey);
+    margin-top: -4px;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink);
+    font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; position: relative;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -4px; left: 0; width: 0; height: 1px;
+    background: var(--terracotta); transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a:hover::after { width: 100%; }
+  .menu-toggle {
+    display: none; background: none; border: none;
+    font-size: 24px; cursor: pointer;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex; align-items: flex-end;
+    padding: 0 0 80px 0;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3e2f 40%, #4a3f2a 100%);
+    z-index: 1;
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1920&q=80') center/cover;
+    opacity: 0.25;
+    mix-blend-mode: luminosity;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .hero-kicker {
+    font-size: 11px; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--ochre);
+    margin-bottom: 20px; font-weight: 500;
+  }
+  .hero-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 400; line-height: 1.1;
+    color: var(--cream); margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--ochre);
+  }
+  .hero-dek {
+    font-size: clamp(16px, 2vw, 20px);
+    color: rgba(250,246,240,0.75);
+    max-width: 600px; margin: 0 auto 36px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(250,246,240,0.5);
+  }
+  .scroll-hint {
+    position: absolute; bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(250,246,240,0.4);
+    font-size: 24px; animation: bounce 2s infinite;
+    z-index: 2; cursor: pointer;
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+
+  /* ARTICLE */
+  .article-wrap {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+  }
+  .article-header {
+    text-align: center; margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-border);
+  }
+  .article-section-label {
+    font-size: 10px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .article-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400; line-height: 1.15;
+    margin-bottom: 20px; letter-spacing: -0.5px;
+  }
+  .article-byline {
+    font-size: 13px; color: var(--soft-grey);
+    font-style: italic;
+  }
+  .article-byline strong {
+    color: var(--ink); font-style: normal;
+    font-weight: 600;
+  }
+  .article-date {
+    font-size: 11px; color: var(--soft-grey);
+    margin-top: 6px; letter-spacing: 1px;
+  }
+
+  .lead {
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.6; color: var(--ink);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .lead::first-letter {
+    font-size: 3.2em; float: left;
+    line-height: 0.8; margin-right: 10px;
+    margin-top: 6px; color: var(--terracotta);
+    font-weight: 400;
+  }
+
+  .body-text {
+    font-size: 17px; line-height: 1.8;
+    margin-bottom: 28px; text-align: justify;
+    hyphens: auto;
+  }
+  .body-text strong { font-weight: 600; color: var(--deep-green); }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    margin: 48px 0; padding: 32px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--light-border);
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '"';
+    font-size: 80px; line-height: 1;
+    color: var(--ochre); opacity: 0.3;
+    position: absolute; top: 10px; left: -10px;
+    font-family: Georgia, serif;
+  }
+  .pull-quote p {
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-style: italic; line-height: 1.5;
+    padding-left: 40px; color: var(--ink);
+  }
+  .pull-quote cite {
+    display: block; margin-top: 16px;
+    font-size: 12px; font-style: normal;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--soft-grey); padding-left: 40px;
+  }
+
+  /* IMAGE BLOCKS */
+  .img-block {
+    margin: 48px -24px;
+    position: relative;
+  }
+  .img-block img {
+    width: 100%; height: auto;
+    display: block;
+  }
+  .img-caption {
+    padding: 14px 24px;
+    font-size: 12px; color: var(--soft-grey);
+    font-style: italic; border-bottom: 1px solid var(--light-border);
+  }
+  .img-caption strong {
+    font-style: normal; color: var(--ink);
+    font-weight: 600; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 1.5px;
+  }
+
+  /* INLINE IMAGES ROW */
+  .img-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .img-row img {
+    width: 100%; height: 220px;
+    object-fit: cover; display: block;
+  }
+  .img-row .img-cap {
+    font-size: 11px; color: var(--soft-grey);
+    margin-top: 6px; font-style: italic;
+  }
+
+  /* SECTION BREAK */
+  .section-break {
+    text-align: center; margin: 56px 0;
+    color: var(--ochre); font-size: 18px;
+    letter-spacing: 8px;
+  }
+
+  /* SUBHEAD */
+  .subhead {
+    font-size: 14px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--terracotta);
+    margin: 40px 0 20px; font-weight: 600;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--ink);
+    color: var(--cream); padding: 60px 24px 40px;
+    margin-top: 80px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-brand .logo-text { color: var(--cream); font-size: 18px; }
+  .footer-brand p {
+    font-size: 13px; color: rgba(250,246,240,0.6);
+    margin-top: 12px; line-height: 1.7;
+  }
+  .footer-col h4 {
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--ochre);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    color: rgba(250,246,240,0.6);
+    text-decoration: none; font-size: 13px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--ochre); }
+  .footer-bottom {
+    max-width: 1100px; margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(250,246,240,0.1);
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: rgba(250,246,240,0.4);
+    flex-wrap: wrap; gap: 8px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: var(--cream); flex-direction: column;
+      padding: 20px 24px; border-bottom: 1px solid var(--light-border);
+    }
+    .nav-links.open { display: flex; }
+    .menu-toggle { display: block; }
+    .hero { min-height: 70vh; padding-bottom: 60px; }
+    .img-row { grid-template-columns: 1fr; }
+    .img-row img { height: 280px; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .pull-quote::before { font-size: 50px; top: 20px; }
+    .pull-quote p { padding-left: 30px; font-size: 18px; }
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="logo-group">
+    <div class="logo-mark">C</div>
+    <div>
+      <div class="logo-text">Cellar & Soil</div>
+      <div class="logo-sub">Nigeria Edition</div>
+    </div>
+  </div>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#story">Features</a></li>
+      <li><a href="#story">Tastings</a></li>
+      <li><a href="#story">Terroir</a></li>
+      <li><a href="#story">People</a></li>
+      <li><a href="#story">Subscribe</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">The May Issue</div>
+    <h1 class="hero-title">What Nigerians Are <em>Actually</em> Drinking</h1>
+    <p class="hero-dek">An intimate, ground-level portrait of wine culture in Africa's most populous nation — from palm wine ceremonies in Ibadan to Carménère at Sunday lunch.</p>
+    <div class="hero-meta">Photography & Reporting by Osagie Aromose</div>
+  </div>
+  <div class="scroll-hint" onclick="document.getElementById('story').scrollIntoView()">↓</div>
+</section>
+
+<!-- ARTICLE -->
+<article class="article-wrap" id="story">
+
+  <header class="article-header">
+    <div class="article-section-label">Feature Report</div>
+    <h1 class="article-title">The Glass in the Tropics: Wine, Palm Wine, and the Nigerian Palate</h1>
+    <div class="article-byline">By <strong>Osagie Aromose</strong></div>
+    <div class="article-date">May 2026</div>
+  </header>
+
+  <p class="lead">
+    On a sweltering Sunday in Ibadan, three generations of the Adeyemi family gather around a long table draped in ankara cloth. The conversation is not about politics, nor football, but about the relative merits of a Chilean Carménère versus the milky, effervescent palm wine tapped that morning from a raffia tree in their village. The grandfather, Chief Adeyemi, holds his glass of palm wine like a sceptre. His granddaughter, freshly returned from a master's programme in Bordeaux, swirls the Carménère with the confidence of someone who has stood in the Médoc. Both are Nigerian. Both are right.
+  </p>
+
+  <p class="body-text">
+    This is the Nigeria that wine writing rarely captures — a country of 220 million people where drinking culture is neither monolithic nor imported wholesale from Europe. It is instead a layered, often contradictory landscape where colonial-era tastes, indigenous fermentation traditions, evangelical temperance movements, and a new generation of globally mobile consumers all collide in the same glass. To write about wine in Nigeria is to write about class, climate, religion, infrastructure, and aspiration — sometimes all in a single sip.
+  </p>
+
+  <div class="img-block fade-in">
+    <img src="https://kimi-web-img.moonshot.cn/img/c8.alamy.com/2f30ee40430dabec725a181dca380750abc63965.jpg" alt="Aerial view of Ibadan cityscape">
+    <div class="img-caption"><strong>Ibadan, Oyo State</strong> — Nigeria's third-largest city, where Sunday lunch often doubles as a wine-tasting salon across generations.</div>
+  </div>
+
+  <p class="body-text">
+    The story of Nigerian drinking culture begins, as so many African stories do, with the palm tree. <em>Palm wine</em> — known variously as <em>emu</em>, <em>oguro</em>, or <em>nsafufuo</em> depending on the region — is not merely a beverage; it is a technology, a social contract, and a measure of time. Tapped from the raffia palm or the oil palm, the sap ferments naturally within hours, producing a drink that is alive, changing, and deeply place-specific. A glass of palm wine in Enugu tastes different from one in Abeokuta, not because of branding or terroir in the French sense, but because of the tree, the tapper's technique, and the microbial flora of that particular grove.
+  </p>
+
+  <p class="body-text">
+    In Igbo cosmology, palm wine occupies a sacred position. The <em>igba nkwu</em> ceremony — the traditional wedding rite in which the groom searches for his bride while carrying a gourd of palm wine — is not symbolic in a diluted, modern way. It is literal. The wine must be found, presented, and shared. To refuse it, or to offer bad wine, is to break a covenant older than the Nigerian state itself. This is the context in which imported wine enters the conversation: not as a replacement, but as an addition to a table already crowded with meaning.
+  </p>
+
+  <div class="pull-quote fade-in">
+    <p>The wine must be found, presented, and shared. To refuse it, or to offer bad wine, is to break a covenant older than the Nigerian state itself.</p>
+    <cite>— On Igbo wedding tradition</cite>
+  </div>
+
+  <h3 class="subhead">The Colonial Bottle</h3>
+
+  <p class="body-text">
+    Nigeria's relationship with imported wine was forged in the colonial period, when Portuguese traders first brought fortified wines to the coast, and later when British administrators established a taste for claret and port that filtered, unevenly, into the local elite. The Lagos of the 1950s had its own wine merchants, its own cellar clubs, its own pretensions. But this was always a minority pursuit. For the vast majority of Nigerians, wine remained either palm wine or the various grain-based ferments — <em>burukutu</em>, <em>pito</em>, <em>otika</em> — that sustained rural communities long before the first European ship anchored off the Bight of Benin.
+  </p>
+
+  <div class="img-row fade-in">
+    <div>
+      <img src="https://kimi-web-img.moonshot.cn/img/www.196flavors.com/2da6d85696c1451b3d5d1789231540fb3cb8c345.jpeg" alt="Glass of palm wine">
+      <div class="img-cap">Fresh palm wine, tapped at dawn and best consumed before noon.</div>
+    </div>
+    <div>
+      <img src="https://kimi-web-img.moonshot.cn/img/afrobuy.co.uk/ce9e151a58dd2311965512d4c4b4219771b627c3.jpg" alt="Bottled palm wine">
+      <div class="img-cap">Nkulemu's bottled palm drink — tradition meets modern distribution.</div>
+    </div>
+    <div>
+      <img src="https://kimi-web-img.moonshot.cn/img/www.vinetur.com/5276731e9d159f32a74d57724465e163b72f5e80.jpg" alt="Wine being poured">
+      <div class="img-cap">A new generation of Nigerian consumers discovers wine beyond ceremony.</div>
+    </div>
+  </div>
+
+  <p class="body-text">
+    What changed — and what makes the current moment so fascinating — is the emergence of a Nigerian middle class with disposable income and global exposure. Between 2010 and 2024, wine imports to Nigeria grew by over 300%, driven not by the wealthy few but by young professionals in Lagos, Abuja, and Port Harcourt who view wine consumption as a marker of cosmopolitanism. They are not drinking the way their parents drank. They are drinking the way their Instagram feeds suggest they should drink — which is to say, with an awareness of vintage, varietal, and provenance that would have been unimaginable two decades ago.
+  </p>
+
+  <div class="section-break">• • •</div>
+
+  <h3 class="subhead">The Logistics of Thirst</h3>
+
+  <p class="body-text">
+    To understand Nigerian wine culture, one must first understand Nigerian logistics. This is a country where the national grid fails daily, where cold-chain infrastructure is patchy at best, and where a bottle of decent Bordeaux might pass through four intermediaries before reaching the consumer. The practical realities of buying, storing, and serving wine in a tropical, infrastructure-challenged environment are not footnotes to the story — they <em>are</em> the story.
+  </p>
+
+  <p class="body-text">
+    In the wine shops of Victoria Island, Lagos, air conditioning is not a luxury but a necessity of inventory management. A power outage of more than a few hours can ruin thousands of dollars' worth of stock. Smart retailers have invested in solar-powered cooling systems, but these are expensive, and the cost is passed on to consumers. The result is that wine in Nigeria is often shockingly expensive by global standards — a bottle that retails for €12 in Paris might sell for ₦45,000 (roughly $30) in Lagos, not because of import duties alone, but because of the cumulative cost of keeping it alive in transit.
+  </p>
+
+  <div class="img-block fade-in">
+    <img src="https://kimi-web-img.moonshot.cn/img/www.drinksonline.store/a682794297c63ad1a2dba5f05aa56e53bf2a0c76.jpg" alt="Wine shop interior Lagos">
+    <div class="img-caption"><strong>Lagos, Victoria Island</strong> — Climate-controlled retail has become essential infrastructure for wine merchants in Nigeria's humid coastal cities.</div>
+  </div>
+
+  <p class="body-text">
+    Storage at home presents its own challenges. The Nigerian kitchen is not designed for wine. It is designed for resilience — for garri that lasts years, for dried fish that survives any climate, for palm oil that only improves with age. Wine, by contrast, is fragile. It demands constancy: constant temperature, constant darkness, constant humidity. In a country where constancy is in short supply, wine becomes an act of faith. You buy it, you pray for stable electricity, and you drink it before the weather wins.
+  </p>
+
+  <p class="body-text">
+    And yet, Nigerians persist. They persist because wine has become something more than a beverage. It is a social technology, a way of marking occasions, of signalling arrival, of participating in a global conversation from which Nigeria has too often been excluded. When a young lawyer in Abuja opens a bottle of South African Pinotage at her housewarming, she is not merely drinking. She is making a statement about who she is and who she intends to become.
+  </p>
+
+  <div class="pull-quote fade-in">
+    <p>When a young lawyer in Abuja opens a bottle of South African Pinotage at her housewarming, she is not merely drinking. She is making a statement about who she is and who she intends to become.</p>
+    <cite>— Osagie Aromose</cite>
+  </div>
+
+  <h3 class="subhead">The Voices at the Table</h3>
+
+  <p class="body-text">
+    The most compelling aspect of Nigerian wine culture is not the bottles but the people. In four weeks of reporting across Lagos, Ibadan, Enugu, and Abuja, I spoke with dozens of Nigerians about what they drink, what they reject, and what they dream of. Their answers were rarely simple.
+  </p>
+
+  <p class="body-text">
+    Mrs. Ngozi Okonkwo, a 67-year-old retired civil servant in Enugu, drinks only palm wine and only from one particular tapper in her village. "These imported wines," she told me, waving her hand dismissively, "they taste like medicine. Like something a doctor would give you to sleep. Palm wine tastes like morning. It tastes like the beginning of things." She has never tasted a Cabernet Sauvignon and has no intention of doing so. Her palate is sovereign.
+  </p>
+
+  <div class="img-block fade-in">
+    <img src="https://kimi-web-img.moonshot.cn/img/www.shutterstock.com/5246336e648c1876bc5e96b6def4dcb851c62648.jpg" alt="Nigerian family at dinner table">
+    <div class="img-caption"><strong>Enugu, Enugu State</strong> — For many Nigerian families, the dinner table remains the primary site where drinking traditions are transmitted and contested across generations.</div>
+  </div>
+
+  <p class="body-text">
+    At the other extreme is Emeka Nwosu, a 31-year-old sommelier who trained at the Cape Wine Academy and now runs a consultancy in Lagos advising restaurants on their wine lists. "Nigerians are some of the most adventurous wine drinkers I've encountered," he said. "They have no inherited prejudice against New World wines, no snobbery about non-French regions. They judge by taste, by value, by the story. A good Chilean Carménère can outsell a mediocre Bordeaux here because Nigerians are pragmatic drinkers. They want quality, not pedigree."
+  </p>
+
+  <p class="body-text">
+    Between these poles lies the vast, undecided middle — the university students sharing a bottle of cheap Spanish red at a birthday party, the Pentecostal pastor who drinks wine only at communion and considers all other consumption suspect, the Yoruba businessman who keeps a cellar of First Growths for clients and a clay pot of palm wine for himself. Nigeria's drinking culture is not a spectrum but a constellation, with each star burning according to its own logic.
+  </p>
+
+  <div class="img-row fade-in">
+    <div>
+      <img src="https://kimi-web-img.moonshot.cn/img/c8.alamy.com/047758d4f265c01132e40f1f69293c19b0a5f421.jpg" alt="Ibadan hillside view">
+      <div class="img-cap">Ibadan's seven hills have watched over centuries of changing tastes.</div>
+    </div>
+    <div>
+      <img src="https://kimi-web-img.moonshot.cn/img/songstillwine.sitesng.com/4ae17573859a26ab4c9e2e21c7949b331685f1a8.jpg" alt="Wine store Abuja">
+      <div class="img-cap">A wine store in Abuja's Wuse district, where South African and Chilean labels dominate.</div>
+    </div>
+    <div>
+      <img src="https://kimi-web-img.moonshot.cn/img/www.eventdesignbybe.com/1b290e3f926dab85c94d1d3ca9410a0151392f82.png" alt="Traditional palm wine ceremony">
+      <div class="img-cap">The palm wine ceremony remains non-negotiable in Igbo wedding tradition.</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">What They Dream Of</h3>
+
+  <p class="body-text">
+    If there is a unifying thread in Nigerian drinking culture, it is aspiration — not the vulgar aspiration of status-seeking, but the deeper human aspiration to connect, to celebrate, to mark time with something better than mere survival. Nigerians do not drink to forget. They drink to remember: to remember ancestors, to remember achievements, to remember that joy is a legitimate response to a hard-won life.
+  </p>
+
+  <p class="body-text">
+    The dream, expressed to me repeatedly, is of a Nigerian wine industry. Not merely an import market, but actual vineyards, actual Nigerian terroir, actual bottles that say "Product of Nigeria" on the label. This is not as far-fetched as it sounds. The Mambilla Plateau in Taraba State, with its high altitude and cool nights, has been identified by agricultural researchers as potentially viable for viticulture. Small experimental plantings exist. The dream is nascent, but it is real.
+  </p>
+
+  <p class="body-text">
+    "Imagine," said Emeka the sommelier, his eyes brightening, "imagine a Nigerian wine on a list in London. Imagine a sommelier in Paris recommending a Cabernet from Jos. That is the future. Not replacing Bordeaux, but adding Nigeria to the conversation. Making the map bigger." It is a beautiful dream, and one that feels entirely appropriate for a country that has always been larger than the stories told about it.
+  </p>
+
+  <div class="section-break">• • •</div>
+
+  <p class="body-text">
+    Back in Ibadan, the Adeyemi family's Sunday lunch stretches into evening. The Carménère bottle is empty. The clay pot of palm wine has been refilled twice. Chief Adeyemi and his granddaughter are now debating the merits of Nigerian-made craft spirits — a new category that barely existed five years ago. The conversation is loud, affectionate, and entirely unconcerned with what anyone outside the compound thinks about what Nigerians should or should not drink.
+  </p>
+
+  <p class="body-text">
+    This, finally, is the truth of it. Nigerian drinking culture does not need validation from European critics or American importers. It is already complete, already complex, already worthy of serious attention. The palm wine tapper in Ondo State and the sommelier in Lagos Victoria Island are both practitioners of the same ancient art: the art of taking something from the earth and making it sacred through sharing. The glass in the tropics is not a lesser glass. It is simply a different one — warmer, more crowded, more alive.
+  </p>
+
+  <p class="body-text" style="margin-top: 48px; font-style: italic; color: var(--soft-grey); border-left: 3px solid var(--ochre); padding-left: 20px;">
+    <strong>Osagie Aromose</strong> is a Lagos-based writer reporting on food, drink, and culture across West Africa. His work has appeared in <em>Granta</em>, <em>The Guardian Nigeria</em>, and <em>Afropolitan</em>. He is currently researching a book on palm wine traditions of the Niger Delta.
+  </p>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-text">Cellar & Soil</div>
+      <p>An independent magazine devoted to the culture of drink across Africa and its diaspora. We believe every glass tells a story — of land, labour, and the long journey from vine to table.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#">Current Issue</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Contributors</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Pitch a Story</a></li>
+        <li><a href="#">Advertise</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Cellar & Soil Magazine. All rights reserved.</span>
+    <span> cellarandsoil.com.ng</span>
+  </div>
+</footer>
+
+<script>
+  // Fade-in animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
